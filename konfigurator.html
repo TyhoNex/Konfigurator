@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfigurátor stanice ESL</title>
+    <link rel="stylesheet" href="konfigurator.css">
+</head>
+<body>
+
+    
+        
+        <div class="container">
+            <div class="nadpis">
+                <h1>Konfigurátor stanice <span class="highlight">ESL</span></h1>
+            </div>
+
+            <div class="box1">
+                
+
+
+                <!-- Výběr účelu -->
+                <label for="ucelSelect">Vyberte účel:</label>
+                <select id="ucelSelect" onchange="zobrazTypy()">
+                    <option value=""></option>
+                    <option value="Vytápění">Vytápění</option>
+                    <option value="Ohřev teplé vody">Ohřev teplé vody</option>
+                </select>
+
+                <!-- Výběr typu (závisí na účelu) -->
+                <label for="typSelect">Vyberte typ:</label>
+                <select id="typSelect" onchange="zobrazPodtypy()">
+                    <option value=""></option>
+                    <option value="Teplovod UT" data-ucel="Vytápění">Teplovod UT</option>
+                    <option value="Horkovod UT" data-ucel="Vytápění">Horkovod UT</option>
+                    <option value="Teplovod TUV" data-ucel="Ohřev teplé vody">Teplovod TUV</option>
+                    <option value="Horkovod TUV" data-ucel="Ohřev teplé vody">Horkovod TUV</option>
+                </select>
+
+                <!-- Výběr podtypu (závisí na typu) -->
+                <label for="vykon">Vyberte požadovaný výkon:</label>
+                <select id="vykon" onchange="zobrazCenuITypStanice()">
+                    <option value=""></option>
+                    <option value="30-70 kW" data-typ="Teplovod UT" data-typstanice="TVS 1" data-cena="10000" data-vymenik="CB30" data-cenaVymeniku="10001" data-cerpadlo="EVOPLUS PN16" data-cenaCerpadla="20001">30-70kW</option>
+                    <option value="90-130 kW" data-typ="Teplovod UT" data-typstanice="TVS 2" data-cena="15000" data-vymenik="CB60" data-cenaVymeniku="10002" data-cerpadlo="EVOPLUS PN16" data-cenaCerpadla="20002">90-130kW</option>
+                    <option value="150-200 kW" data-typ="Teplovod UT" data-typstanice="TVS 3" data-cena="20000" data-vymenik="CB110" data-cenaVymeniku="10003" data-cerpadlo="EVOPLUS B PN16" data-cenaCerpadla="20003">150-200kW</option>
+                    <option value="210-350 kW" data-typ="Teplovod UT" data-typstanice="TVS 4" data-cena="25000" data-vymenik="CB110" data-cenaVymeniku="10004" data-cerpadlo="EVOPLUS B PN16" data-cenaCerpadla="20004">210-350kW</option>
+                    <option value="360-550 kW" data-typ="Teplovod UT" data-typstanice="TVS 5" data-cena="30000" data-vymenik="CB110" data-cenaVymeniku="10005" data-cerpadlo="EVOPLUS B PN16" data-cenaCerpadla="20005">360-550kW</option>
+
+                    <option value="30-70 kW" data-typ="Horkovod UT" data-typstanice="HVS 1" data-cena="12000" data-vymenik="CB30" data-cenaVymeniku="10006" data-cerpadlo="EVOPLUS PN16" data-cenaCerpadla="20006">30-70kW</option>
+                    <option value="90-130 kW" data-typ="Horkovod UT" data-typstanice="HVS 2" data-cena="16000" data-vymenik="CB60" data-cenaVymeniku="10007" data-cerpadlo="EVOPLUS PN16" data-cenaCerpadla="20007">90-130kW</option>
+                    <option value="150-200 kW" data-typ="Horkovod UT" data-typstanice="HVS 3" data-cena="21000" data-vymenik="CB110" data-cenaVymeniku="10008" data-cerpadlo="EVOPLUS B PN16" data-cenaCerpadla="20008">150-200kW</option>
+                    <option value="210-350 kW" data-typ="Horkovod UT" data-typstanice="HVS 4" data-cena="26000" data-vymenik="CB110" data-cenaVymeniku="10009" data-cerpadlo="EVOPLUS B PN16" data-cenaCerpadla="20009">210-350kW</option>
+                    <option value="360-550 kW" data-typ="Horkovod UT" data-typstanice="HVS 5" data-cena="31000" data-vymenik="CB110" data-cenaVymeniku="10010" data-cerpadlo="EVOPLUS B PN16" data-cenaCerpadla="20010">360-550kW</option>
+
+                    <option value="30-110 kW" data-typ="Teplovod TUV" data-typstanice="TPZOTV 1" data-cena="13000" data-vymenik="CB30" data-cenaVymeniku="10011" data-cerpadlo="EVOPLUS 40/180" data-cenaCerpadla="20011">30-110kW</option>
+                    <option value="120-170 kW" data-typ="Teplovod TUV" data-typstanice="TPZOTV 2" data-cena="18000" data-vymenik="CB60" data-cenaVymeniku="10012" data-cerpadlo="EVOPLUS 40/180" data-cenaCerpadla="20012">120-170kW</option>
+                    <option value="180-300 kW" data-typ="Teplovod TUV" data-typstanice="TPZOTV 3" data-cena="23000" data-vymenik="CB110" data-cenaVymeniku="10013" data-cerpadlo="EVOPLUS 60/180" data-cenaCerpadla="20013">180-300kW</option>
+                    <option value="310-450 kW" data-typ="Teplovod TUV" data-typstanice="TPZOTV 4" data-cena="28000" data-vymenik="CB110" data-cenaVymeniku="10014" data-cerpadlo="EVOPLUS 110/180" data-cenaCerpadla="20014">310-450kW</option>
+
+                    <option value="30-110 kW" data-typ="Horkovod TUV" data-typstanice="TPZOTV 1" data-cena="14000" data-vymenik="CB30" data-cenaVymeniku="10015" data-cerpadlo="EVOPLUS 40/180" data-cenaCerpadla="20015">30-110kW</option>
+                    <option value="120-170 kW" data-typ="Horkovod TUV" data-typstanice="TPZOTV 2" data-cena="19000" data-vymenik="CB60" data-cenaVymeniku="10016" data-cerpadlo="EVOPLUS 40/180" data-cenaCerpadla="20016">120-170kW</option>
+                    <option value="180-300 kW" data-typ="Horkovod TUV" data-typstanice="TPZOTV 3" data-cena="24000" data-vymenik="CB110" data-cenaVymeniku="10017" data-cerpadlo="EVOPLUS 60/180" data-cenaCerpadla="20017">180-300kW</option>
+                    <option value="310-450 kW" data-typ="Horkovod TUV" data-typstanice="TPZOTV 4" data-cena="29000" data-vymenik="CB110" data-cenaVymeniku="10018" data-cerpadlo="EVOPLUS 110/180" data-cenaCerpadla="20018">310-450kW</option>
+                </select>
+
+                <!-- Zobrazení typu stanice -->
+                <label for="typStanice">Typ stanice:</label>
+                <!--<div id="typStanice" class="vystup">Typ stanice: -</div>-->
+                <div id="typStanice" class="vystup">-</div>
+
+                <!-- Zobrazení ceny -->
+                <label for="cena">Cena:</label>
+                <!--<div id="cena" class="vystup">Cena: -</div>-->
+                <div id="cena" class="vystup">-</div>
+
+                
+
+
+
+
+            </div>
+            <div class="box2">
+
+                <!-- Vyber vymeniku -->
+                <label for="vymenik">Chcete výměník?</label>
+                <select id="vymenik" onchange="zobrazTypVymeniku()">
+                    <option value="Ne">Ne</option>
+                    <option value="Ano">Ano</option>     
+                </select>
+
+
+                <!-- Zobrazení vymeniku podle vykonu -->
+                <label for="typVymeniku">Typ výměníku:</label>
+                <!--<div id="typVymeniku" class="vystup">Typ výměníku: -</div>-->
+                <div id="typVymeniku" class="vystup">-</div>
+                <!-- Zobrazení ceny -->
+
+                <label for="cenaVymeniku">Cena výměníku:</label>
+                <!-- <div id="cenaVymeniku" class="vystup">Cena výměníku: -</div> -->
+                <div id="cenaVymeniku" class="vystup">-</div>
+
+            </div>
+
+            <div class="box3">
+
+                <!-- Vyber cerpadla -->
+                <label for="cerpadlo">Chcete čerpadlo?</label>
+                <select id="cerpadlo" onchange="zobrazTypCerpadla()">
+                    <option value="Ne">Ne</option>
+                    <option value="Ano">Ano</option>     
+                </select>
+
+
+                <!-- Zobrazení cerpadla podle vykonu -->
+                <label for="typCerpadla">Typ čerpadla:</label>
+                <!--<div id="typVymeniku" class="vystup">Typ výměníku: -</div>-->
+                <div id="typCerpadla" class="vystup">-</div>
+                <!-- Zobrazení ceny -->
+
+                <label for="cenaCerpadla">Cena čerpadla:</label>
+                <!-- <div id="cenaVymeniku" class="vystup">Cena výměníku: -</div> -->
+                <div id="cenaCerpadla" class="vystup">-</div>
+
+            </div>
+
+            <div class="box4">
+
+                <!-- Vyber cerpadla -->
+                <label for="ventil">Chcete regulační ventil?</label>
+                <select id="ventil" onchange="zobrazTypVentilu()">
+                    <option value="Ne">Ne</option>
+                    <option value="Ano">Ano</option>     
+                </select>
+
+
+                <!-- Zobrazení cerpadla podle vykonu -->
+                <label for="typVentilu">Typ regulačního ventilu:</label>
+                <!--<div id="typVymeniku" class="vystup">Typ výměníku: -</div>-->
+                <div id="typVentilu" class="vystup">-</div>
+                <!-- Zobrazení ceny -->
+
+                <label for="cenaVentilu">Cena regulačního ventilu:</label>
+                <!-- <div id="cenaVymeniku" class="vystup">Cena výměníku: -</div> -->
+                <div id="cenaVentilu" class="vystup">-</div>
+
+            </div>
+
+            <div class="box6">
+                <!-- Vyber cerpadla -->
+                <label for="merictepla">Chcete měřič tepla?</label>
+                <select id="merictepla" onchange="zobrazTypMerice()">
+                    <option value="Ne">Ne</option>
+                    <option value="Ano">Ano</option>     
+                </select>
+            
+                <!-- Cena měřiče tepla, výchozí stav skrytá -->
+                <label for="cenaMerice">Cena měřiče tepla:</label>
+                <div id="cenaMerice" class="vystup">-</div>
+            </div>
+
+            <div class="box7">
+                <!-- Vyber cerpadla -->
+                <label for="regulator">Chcete regulátor dif. tlaku?</label>
+                <select id="regulator" onchange="zobrazTypRegulatoru()">
+                    <option value="Ne">Ne</option>
+                    <option value="Ano">Ano</option>     
+                </select>
+            
+                <!-- Cena měřiče tepla, výchozí stav skrytá -->
+                <label for="cenaRegulatoru">Cena regulátoru dif. tlaku:</label>
+                <div id="cenaRegulatoru" class="vystup">-</div>
+            </div>
+
+            <div class="box5">
+                <!-- Vyber cerpadla -->
+                <label for="dopousteni">Chcete dopouštění?</label>
+                <select id="dopousteni" onchange="zobrazTypDopousteni()">
+                    <option value="Ne">Ne</option>
+                    <option value="Ano">Ano</option>     
+                </select>
+            
+                <!-- Cena měřiče tepla, výchozí stav skrytá -->
+                <label for="cenaDopousteni">Cena dopouštění:</label>
+                <div id="cenaDopousteni" class="vystup">-</div>
+            </div>
+
+            <div class="cena">
+                <label for="celkovaCena">Celková cena:</label>
+                <div id="celkovaCena" class="vystup">-</div>
+            </div>
+            
+
+        </div>
+    
+
+
+    <script src="konfigurator.js"></script>
+</body>
+</html>
